@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKCO CTF SOLUTIONS | Cyber Excellence & Gamified Training</title>
+    <style>
+        :root { --primary: #0f172a; --secondary: #38bdf8; --accent: #f472b6; --text: #f8fafc; --dark-bg: #020617; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; color: var(--text); background-color: var(--dark-bg); line-height: 1.8; scroll-behavior: smooth; }
+        
+        header { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #1e293b; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--secondary); letter-spacing: 1px; text-transform: uppercase; }
+        nav a { color: #94a3b8; margin-left: 25px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--secondary); }
+
+        .hero { background: linear-gradient(135deg, rgba(2, 6, 23, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80'); 
+                height: 85vh; background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 0 15%; border-bottom: 2px solid var(--secondary); }
+        .hero h1 { font-size: 4rem; margin-bottom: 15px; letter-spacing: -2px; }
+        .hero p { font-size: 1.3rem; color: #94a3b8; max-width: 800px; margin-bottom: 35px; }
+        .btn { background: var(--secondary); color: var(--primary); padding: 14px 35px; text-decoration: none; border-radius: 4px; font-weight: bold; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .btn:hover { background: var(--accent); color: white; box-shadow: 0 0 20px rgba(244, 114, 182, 0.4); }
+
+        section { padding: 100px 10%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.8rem; color: white; margin-bottom: 10px; }
+        .section-title div { width: 80px; height: 3px; background: var(--secondary); margin: 0 auto; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; }
+        .card { background: #0f172a; padding: 45px; border-radius: 4px; border: 1px solid #1e293b; transition: 0.3s; position: relative; overflow: hidden; }
+        .card:hover { border-color: var(--secondary); transform: translateY(-5px); }
+        .card h3 { color: var(--secondary); margin-top: 0; font-size: 1.5rem; }
+        .card p { color: #94a3b8; }
+
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+        .team-member { text-align: center; background: #020617; padding: 30px; border-radius: 8px; border: 1px solid #1e293b; }
+        .team-member img { width: 140px; height: 140px; border-radius: 4px; object-fit: cover; margin-bottom: 20px; filter: grayscale(100%); transition: 0.5s; border: 2px solid #1e293b; }
+        .team-member:hover img { filter: grayscale(0%); border-color: var(--secondary); }
+        .team-member h4 { margin-bottom: 5px; color: white; }
+        .team-member p { color: var(--secondary); font-size: 0.85rem; text-transform: uppercase; margin-top: 0; }
+
+        input, textarea { background: #020617; border: 1px solid #1e293b; color: white; padding: 12px; width: 100%; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+        input:focus, textarea:focus { border-color: var(--secondary); }
+
+        footer { background: #020617; border-top: 1px solid #1e293b; padding: 80px 10% 40px; font-size: 0.9rem; color: #64748b; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 50px; }
+        .footer-grid h4 { color: white; margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+        .footer-bottom { border-top: 1px solid #1e293b; padding-top: 30px; text-align: center; font-size: 0.8rem; }
+        
+        .ctf-hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">HKCO CTF SOLUTIONS</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Solutions</a>
+        <a href="#team">Experts</a>
+        <a href="#careers">Careers</a>
+        <a href="#contact">Inquiry</a>
+        <a href="/guest.html">Guest</a>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <h1>Securing the Digital Frontier.</h1>
+    <p>HKCO CTF SOLUTIONS is the premier architect for high-fidelity cyber ranges, gamified vulnerability research, and national-level Capture The Flag competitions.</p>
+    <a href="#services" class="btn">Deploy Cyber Range</a>
+</section>
+
+<section id="services">
+    <div class="section-title">
+        <h2>Our Core Capabilities</h2>
+        <div></div>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <h3>Custom CTF Platforms</h3>
+            <p>End-to-end hosting for Jeopardy and Attack/Defense style events. Scalable cloud infrastructure that stays up even during the heaviest exploitation attempts.</p>
+        </div>
+        <div class="card">
+            <h3>Vulnerability Synthesis</h3>
+            <p>Our lab creates bespoke "Hard" level challenges including esoteric binary exploitation, kernel-level drivers, and complex web polyglots.</p>
+        </div>
+        <div class="card">
+            <h3>Red Team Training</h3>
+            <p>Gamified offensive security simulations designed for secondary schools, universities, and corporate security departments globally.</p>
+        </div>
+    </div>
+</section>
+
+<section id="team" style="background: #0f172a;">
+    <div class="section-title">
+        <h2>Leadership & Research</h2>
+        <div></div>
+    </div>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="" alt="a...">
+            <h4>a...</h4>
+            <p>CEO & CTF Lead</p>
+        </div>
+        <div class="team-member">
+            <img src="" alt="h...">
+            <h4>h...</h4>
+            <p>CEO & CTF Lead</p>
+        </div>
+    </div>
+</section>
+
+<section id="careers">
+    <div class="section-title">
+        <h2>We Are Hiring Hackers</h2>
+        <div></div>
+    </div>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 40px; color: #94a3b8;">HKCO CTF SOLUTIONS is looking for creative minds to break things for a living. If you have experience in Web exploitation, we want to hear from you.</p>
+    <div style="text-align: center;">
+        <a href="#" class="btn">View Challenges</a>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-title">
+        <h2>Contact Our HQ</h2>
+        <div></div>
+    </div>
+    <div class="grid">
+        <div>
+            <h3>Secure Communications</h3>
+            <p>Room 1024, HKCO Tower<br>Kowloon, Hong Kong</p>
+            <p>Public Key ID: <b>HKCO2026</b></p>
+            <p>Support: <b>ops@hkco-ctf.solutions</b></p>
+        </div>
+        <div>
+            <form action="#" method="GET">
+                <input type="text" placeholder="Alias / Name" required>
+                <input type="email" placeholder="Contact Email" required>
+                <textarea placeholder="Tell us about your organization's training needs..." rows="4"></textarea>
+                <button type="submit" class="btn" style="border:none; cursor:pointer; width: 100%;">Initialize Contact</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h4 style="color:var(--secondary)">HKCO CTF SOLUTIONS</h4>
+            <p>The standard in gamified cybersecurity since 2026. Certified by the Global Security Alliance.</p>
+        </div>
+        <div>
+            <h4>Resources</h4>
+            <p><a href="#" style="color:#64748b; text-decoration:none;">Range Specs</a></p>
+            <p><a href="#" style="color:#64748b; text-decoration:none;">System Status</a></p>
+            <p><a href="#" style="color:#64748b; text-decoration:none;">Disallow Policy</a></p>
+        </div>
+        <div>
+            <h4>Internal</h4>
+            <p><a href="#" style="color:#64748b; text-decoration:none;">Bug Tracker</a></p>
+            <p><a href="#" style="color:#64748b; text-decoration:none;">Core Terminal</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 HKCO CTF SOLUTIONS. All rights reserved.</p>
+        </div>
+</footer>
+
+<div class="ctf-hidden">
+    </div>
+
+</body>
+</html>

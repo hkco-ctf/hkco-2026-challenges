@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Portal | HKCO CTF SOLUTIONS</title>
+    <style>
+        :root { --primary: #0f172a; --secondary: #38bdf8; --accent: #f472b6; --text: #f8fafc; --dark-bg: #020617; }
+        body { font-family: 'Inter', sans-serif; margin: 0; color: var(--text); background-color: var(--dark-bg); line-height: 1.6; }
+        
+        header { background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid #1e293b; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.2rem; font-weight: 800; color: var(--secondary); text-decoration: none; letter-spacing: 1px; }
+
+        .container { max-width: 800px; margin: 50px auto; padding: 0 20px; }
+        .hero-mini { text-align: center; margin-bottom: 40px; }
+        .hero-mini h1 { color: white; font-size: 2.2rem; margin-bottom: 10px; }
+        .hero-mini p { color: #94a3b8; }
+
+        .guest-form { background: #0f172a; padding: 30px; border-radius: 8px; border: 1px solid #1e293b; margin-bottom: 40px; }
+        label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--secondary); font-weight: 600; }
+        input, textarea { background: #020617; border: 1px solid #1e293b; color: white; padding: 12px; width: 100%; box-sizing: border-box; margin-bottom: 20px; border-radius: 4px; outline: none; }
+        input:focus, textarea:focus { border-color: var(--secondary); }
+        .btn { background: var(--secondary); color: var(--primary); padding: 12px 25px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; text-transform: uppercase; }
+        .btn:hover { background: var(--accent); color: white; }
+
+        .entries-title { border-bottom: 1px solid #1e293b; padding-bottom: 10px; margin-bottom: 20px; color: white; }
+        .entry { background: #0f172a; padding: 20px; border-radius: 4px; border-left: 4px solid var(--secondary); margin-bottom: 15px; }
+        .entry-header { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 10px; color: #64748b; }
+        .entry-author { color: var(--accent); font-weight: bold; }
+        .entry-content { color: #cbd5e1; }
+
+        footer { text-align: center; padding: 40px; color: #475569; font-size: 0.8rem; }
+    </style>
+    <script>
+        function parseJwt(token) {
+            try {
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+
+                return JSON.parse(jsonPayload);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        window.onload = async () => {
+            try {
+                const response = await fetch('/api/get-token', {
+                    credentials: 'include' 
+                });
+                
+                const data = await response.json();
+                setTimeout(() => {
+                    const token = getCookie('auth_token');
+                    if (token) {
+                        const decoded = parseJwt(token);
+                        if (decoded && decoded.session_id) {
+                            document.getElementById('display-uuid').innerText = decoded.session_id;
+                        } else {
+                            document.getElementById('display-uuid').innerText = "INVALID_JWT_PAYLOAD";
+                        }
+                    } else {
+                        document.getElementById('display-uuid').innerText = "ERROR_NO_COOKIE";
+                    }
+                }, 500);
+
+            } catch (err) {
+                console.error("Fetch error:", err);
+                document.getElementById('display-uuid').innerText = "FETCH_FAILED";
+            }
+        };
+    </script>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">HKCO CTF SOLUTION</a>
+    <div style="font-size: 0.8rem; color: #64748b;">GUEST_SESSION_ID: <b id="display-uuid"></b></div>
+</header>
+
+<div class="container">
+    <div class="hero-mini">
+        <h1>Digital Guestbook</h1>
+        <p>Are you a visiting researcher or a prospective client? Leave your mark on our secure ledger.</p>
+    </div>
+
+    <div class="guest-form">
+        <form action="#" method="GET"> <label for="name">Visitor Alias</label>
+            <input type="text" id="name" name="name" placeholder="e.g. HackerOne" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Share your experience with HKCO CTF..." required></textarea>
+
+            <button type="submit" class="btn">Sign the Ledger</button>
+        </form>
+    </div>
+
+    <h2 class="entries-title">Recent Visitors</h2>
+    
+    <div id="guest-entries">
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-author">Admin_Charles</span>
+                <span>2026-04-23 14:22</span>
+            </div>
+            <div class="entry-content">Welcome to the new HKCO Guest portal! Please report any bugs via the internal tracker.</div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-author">Guest_User_99</span>
+                <span>2026-04-24 09:15</span>
+            </div>
+            <div class="entry-content">The quantum logistics demo was incredible. Looking forward to the range deployment!</div>
+        </div>
+
+        <div class="entry" style="border-left-color: var(--accent);">
+            <div class="entry-header">
+                <span class="entry-author">Security_Audit_Bot</span>
+                <span>Just Now</span>
+            </div>
+            <div class="entry-content">
+                <em>Checking input sanitization... [SYSTEM_OK]</em>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 HKCO CTF SOLUTIONS | Guest Portal v1.0.4<br>
+</footer>
+</body>
+</html>

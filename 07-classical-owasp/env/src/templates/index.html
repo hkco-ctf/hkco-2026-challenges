@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HKCO Flag System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark"></span>
+      <span>HKCO Flag System</span>
+    </div>
+    <div class="card">
+      <h1>Sign in</h1>
+      <p class="sub">Only admins can see the flag. Good luck.</p>
+      <form method="post" autocomplete="off" novalidate>
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" name="username" autocapitalize="off" autocorrect="off" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password">
+        </div>
+        <button type="submit">Log in</button>
+      </form>
+      {% if message %}
+      <div class="banner {{ status }}">
+        {{ message }}
+        {% if flag %}<div class="flag">{{ flag }}</div>{% endif %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="footer">hkco2026 · web</div>
+  </div>
+</body>
+</html>

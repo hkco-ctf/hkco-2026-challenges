@@ -1,0 +1,37 @@
+services:
+  01-easy-puwun:
+    image: 01-easy-puwun
+    build: ./01-easy-puwun/env
+    ports:
+      - "35001:1337"
+    restart: unless-stopped
+  02-not-that-easy-puwun:
+    image: 02-not-that-easy-puwun
+    build: ./02-not-that-easy-puwun/env
+    ports:
+      - "35002:1337"
+    restart: unless-stopped
+  06-easy-cryptography:
+    image: 06-easy-cryptography
+    build: ./06-easy-cryptography/env
+    ports:
+      - "35006:1337"
+    restart: unless-stopped
+  07-classical-owasp:
+    image: 07-classical-owasp
+    build: ./07-classical-owasp/env
+    ports:
+      - "35007:1337"
+    restart: unless-stopped
+  08-my-new-ctf-startup:
+    image: 08-my-new-ctf-startup
+    build: ./08-my-new-ctf-startup/env
+    ports:
+      - "35008:3000"
+    restart: unless-stopped
+  12-jail-of-uwu:
+    image: 12-jail-of-uwu
+    build: ./12-jail-of-uwu/env
+    ports:
+      - "35012:1337"
+    restart: unless-stopped
