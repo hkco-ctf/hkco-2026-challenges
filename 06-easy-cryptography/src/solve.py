@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Solver for 05-easy-encryption.
+Solver for 06-easy-encryption.
 
 Each round the server emits 32 hex chars -- the output of one of three methods
 applied to a random 7-digit number:
 
   1. AES-128-ECB with a 16-byte key derived from rand() before srand() is called.
-  2. Two passes of "fibi_chupi" (= standard base64).
+  2. Two passes of base64.
   3. MD5 of the zero-padded 7-digit decimal string.
 
 The three weaknesses:
@@ -14,7 +14,7 @@ The three weaknesses:
   1. rand() with no srand() uses glibc's default seed (= 1), so the key is
      fully deterministic.  We reproduce it by calling libc.srand(1) and
      taking 16 rand() bytes, same as the server.
-  2. The "fibi_chupi" function is just base64 -- decode twice.
+  2. The base64 function is just encoding.
   3. Only 10_000_000 possible inputs, so we build an MD5 rainbow table once
      and look each digest up in O(1).
 """
